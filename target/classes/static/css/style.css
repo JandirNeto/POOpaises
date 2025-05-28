@@ -1,0 +1,397 @@
+/* Base e Tipografia */
+body {
+    font-family: 'Inter', sans-serif; /* Fonte mais moderna */
+    margin: 0; /* Remove margem padrão do body */
+    padding: 0;
+    background: #e6f0ff; /* Azul bem clarinho (light blue) */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container principal para centralizar conteúdo */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: #2c3e50; /* Azul escuro mais neutro */
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+
+/* --- Cabeçalho --- */
+.main-header {
+    background-color: #0077cc; /* Azul principal */
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #e6f0ff;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilo para o botão "Adicionar Novo País" no cabeçalho (branco com texto azul) */
+.main-nav .btn-add-header {
+    background-color: white;
+    color: #0077cc;
+    border: 2px solid #0077cc;
+    padding: 10px 25px;
+    border-radius: 25px; /* Mais arredondado */
+    font-size: 1.05em;
+    transition: all 0.3s ease-in-out;
+}
+
+.main-nav .btn-add-header:hover {
+    background-color: #f0f8ff; /* Um azul quase branco no hover */
+    color: #005bb5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 119, 204, 0.4);
+}
+
+
+/* --- Botões Gerais --- */
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 8px; /* Mais arredondado */
+    border: none; /* Remove borda padrão */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none; /* Para links que agem como botões */
+    display: inline-block; /* Para links que agem como botões */
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #0077cc; /* Azul vibrante */
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 119, 204, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #005bb5; /* Azul mais escuro no hover */
+    transform: translateY(-2px); /* Efeito sutil ao passar o mouse */
+    box-shadow: 0 6px 15px rgba(0, 119, 204, 0.4);
+}
+
+.btn-secondary {
+    background-color: #f0f0f0; /* Cinza claro */
+    color: #555;
+    border: 1px solid #ccc;
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-edit {
+    background-color: #28a745; /* Verde para editar */
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #218838;
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Vermelho para deletar */
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* --- Formulários --- */
+.filter-form, .pais-form {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+}
+
+.filter-form label, .pais-form label {
+    display: block; /* Cada label em sua própria linha */
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+}
+
+.pais-form .form-group {
+    margin-bottom: 20px;
+    text-align: left; /* Alinha o texto do label e input à esquerda */
+}
+
+.pais-form input[type="text"],
+.filter-form select { /* Removido o select aqui, ele será do modal */
+    width: calc(100% - 20px); /* Ocupa quase toda a largura */
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura total */
+}
+
+.pais-form input[type="text"]:focus {
+    border-color: #0077cc;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 119, 204, 0.2);
+}
+
+.form-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* --- Cards de Países --- */
+.card-container {
+    display: grid; /* Layout em grid */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas flexíveis */
+    gap: 30px; /* Espaçamento entre os cards */
+    padding: 20px 0;
+}
+
+.pais-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden; /* Garante que a imagem não vaze */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pais-card:hover {
+    transform: translateY(-8px); /* Efeito de "levantar" no hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.bandeira-img {
+    width: 120px; /* Tamanho fixo para bandeiras */
+    height: 80px;
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.card-title {
+    font-size: 1.6em;
+    color: #0077cc;
+    margin-bottom: 10px;
+    text-transform: uppercase; /* Nome do país em maiúsculas */
+}
+
+.pais-card p {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.pais-card strong {
+    color: #2c3e50;
+}
+
+.card-actions {
+    margin-top: 20px;
+    display: flex; /* Para alinhar botões de ação */
+    justify-content: center;
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+.no-results {
+    text-align: center;
+    grid-column: 1 / -1; /* Ocupa todas as colunas no grid */
+    font-size: 1.2em;
+    color: #777;
+    padding: 50px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* --- Animação Wiggle (mantida e aplicada a todos os botões .btn) --- */
+@keyframes wiggle {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    75% { transform: rotate(-3deg); }
+    100% { transform: rotate(0); }
+}
+
+.btn.wiggle { /* Aplica a botões com a classe 'btn' */
+    animation: wiggle 0.4s ease-in-out;
+}
+
+/* --- Modal de Filtro --- */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fixo na tela */
+    z-index: 1000; /* Acima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilitar scroll se necessário */
+    background-color: rgba(0,0,0,0.4); /* Fundo escuro transparente */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Centraliza o modal */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%; /* Largura do modal */
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    color: #444;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    accent-color: #0077cc; /* Cor do checkbox */
+}
+
+.modal-content .btn {
+    width: auto;
+    display: inline-block;
+}
+
+/* Animações para o Modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-nav {
+        margin-top: 15px;
+    }
+
+    .main-nav a {
+        margin: 0 10px;
+        display: block; /* Cada link em uma nova linha em telas pequenas */
+        margin-bottom: 10px;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+
+    .pais-form input[type="text"] {
+        width: 100%; /* Ocupa a largura total */
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 20px;
+    }
+}

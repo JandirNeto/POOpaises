@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de País</title>
+    <script>
+        async function autoPreencher() {
+            const nomeInput = document.getElementById('nome');
+            const nome = nomeInput.value.trim();
+
+            if(nome.length === 0) return;
+
+            // Esta parte dependerá da implementação da API externa
+            // Por enquanto, ela ainda busca na lista interna do servidor
+            const response = await fetch(`/pais/autocomplete?nome=${encodeURIComponent(nome)}`);
+            if (response.ok) {
+                const pais = await response.json();
+                if(pais) {
+                    document.getElementById('capital').value = pais.capital;
+                    document.getElementById('continente').value = pais.continente;
+                    document.getElementById('bandeiraUrl').value = pais.bandeiraUrl;
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}"></script>
+</head>
+<body>
+<header class="main-header">
+    <div class="header-content">
+        <a href="/pais/" class="logo">🌍 Países do Mundo</a>
+        <nav class="main-nav">
+            <a href="/pais/" class="btn btn-secondary">Voltar para a Lista</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <h1 th:text="${pais.nome == '' ? 'Novo País' : 'Editar País'}"></h1>
+
+    <form th:action="@{/pais/salvar}" method="post" th:object="${pais}" class="pais-form">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" th:field="*{nome}" id="nome" onblur="autoPreencher()" placeholder="Ex: Brasil" required>
+        </div>
+        <div class="form-group">
+            <label for="capital">Capital:</label>
+            <input type="text" th:field="*{capital}" id="capital" placeholder="Ex: Brasília" required>
+        </div>
+        <div class="form-group">
+            <label for="continente">Continente:</label>
+            <input type="text" th:field="*{continente}" id="continente" placeholder="Ex: América do Sul" required>
+        </div>
+        <div class="form-group">
+            <label for="bandeiraUrl">URL da Bandeira:</label>
+            <input type="text" th:field="*{bandeiraUrl}" id="bandeiraUrl" placeholder="https://flagcdn.com/br.svg" required>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="/pais/" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

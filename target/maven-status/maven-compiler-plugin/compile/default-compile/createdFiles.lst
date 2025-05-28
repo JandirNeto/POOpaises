@@ -1,0 +1,4 @@
+com\jandir\paises\controller\PaisController.class
+com\jandir\paises\PaisesApplication.class
+com\jandir\paises\service\PaisService.class
+com\jandir\paises\model\Pais.class

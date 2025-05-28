@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Países</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}"></script>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-content">
+        <a href="/pais/" class="logo">🌍 Países do Mundo</a>
+        <nav class="main-nav">
+            <a href="/pais/novo" class="btn btn-add-header">Adicionar Novo País</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <h1>Explorar Países</h1>
+
+    <div class="filter-controls">
+        <button id="openFilterModal" class="btn">Filtrar por Continente</button>
+        <a th:if="${!filtrosSelecionados.isEmpty()}" href="/pais/" class="btn btn-secondary">Limpar Filtro</a>
+    </div>
+
+    <div class="card-container">
+        <div class="pais-card" th:each="pais : ${paises}">
+            <img th:src="${pais.bandeiraUrl}" th:alt="${'Bandeira de ' + pais.nome}" class="bandeira-img">
+            <h3 class="card-title" th:text="${pais.nome}">Nome do País</h3>
+            <p><strong>Capital:</strong> <span th:text="${pais.capital}"></span></p>
+            <p><strong>Continente:</strong> <span th:text="${pais.continente}"></span></p>
+            <div class="card-actions">
+                <a th:href="@{/pais/editar/{nome}(nome=${pais.nome})}" class="btn btn-edit">Editar</a>
+                <a th:href="@{/pais/deletar/{nome}(nome=${pais.nome})}" onclick="return confirm('Confirma excluir este país?')" class="btn btn-delete">Excluir</a>
+            </div>
+        </div>
+        <div th:if="${paises.isEmpty()}" class="no-results">
+            <p>Nenhum país encontrado com os filtros aplicados.</p>
+        </div>
+    </div>
+</div>
+
+<div id="filterModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Filtrar por Continentes</h2>
+        <form id="filterFormModal" method="get" action="/pais/">
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="continente" value="América do Sul" th:checked="${#lists.contains(filtrosSelecionados, 'América do Sul')}"> América do Sul
+                </label>
+                <label>
+                    <input type="checkbox" name="continente" value="América do Norte" th:checked="${#lists.contains(filtrosSelecionados, 'América do Norte')}"> América do Norte
+                </label>
+                <label>
+                    <input type="checkbox" name="continente" value="Europa" th:checked="${#lists.contains(filtrosSelecionados, 'Europa')}"> Europa
+                </label>
+                <label>
+                    <input type="checkbox" name="continente" value="Ásia" th:checked="${#lists.contains(filtrosSelecionados, 'Ásia')}"> Ásia
+                </label>
+                <label>
+                    <input type="checkbox" name="continente" value="África" th:checked="${#lists.contains(filtrosSelecionados, 'África')}"> África
+                </label>
+                <label>
+                    <input type="checkbox" name="continente" value="Oceania" th:checked="${#lists.contains(filtrosSelecionados, 'Oceania')}"> Oceania
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
